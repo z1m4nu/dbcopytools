@@ -22,11 +22,11 @@ public final class CopyOperationFactory {
 	public static AbstractOperation create(IMemberExport src, IMemberImport dst) {
 		AbstractOperation operation = null;
 
-		if (DriversType.CSV.equals(src.getDatabase().getDefinition().getDriverId())) {
+		if (DriversType.CSV.equals(src.getDatabase().getDriverId())) {
 			operation = new CSVImport(src, dst);
-		} else if (DriversType.CSV.equals(dst)) {
+		} else if (DriversType.CSV.equals(dst.getDatabase().getDriverId())) {
 			operation = new CSVExport(src, dst);
-		} else if (!DriversType.CSV.equals(src) && !DriversType.CSV.equals(dst)) {
+		} else if (!DriversType.CSV.equals(src.getDatabase().getDriverId()) && !DriversType.CSV.equals(dst.getDatabase().getDriverId())) {
 			operation = new SQLImport(src, dst);
 		}
 

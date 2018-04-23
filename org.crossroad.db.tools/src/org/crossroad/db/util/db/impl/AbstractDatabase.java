@@ -3,7 +3,9 @@
  */
 package org.crossroad.db.util.db.impl;
 
+import org.crossroad.db.util.cfg.DriversType;
 import org.crossroad.db.util.cfg.IConnDef;
+import org.crossroad.db.util.db.ITable;
 import org.crossroad.db.util.sql.ISQLFactory;
 import org.crossroad.db.util.sql.impl.SQLStatementFactory;
 import org.crossroad.util.log.AbstractLogger;
@@ -42,11 +44,50 @@ public abstract class AbstractDatabase extends AbstractLogger {
 
 	public abstract void commit() throws Exception;
 
-	public ISQLFactory getSqlFactory() {
-		return sqlFactory;
+
+	/**
+	 * @return
+	 * @see org.crossroad.db.util.cfg.IConnDef#getDriverId()
+	 */
+	public DriversType getDriverId() {
+		return definition.getDriverId();
 	}
 
-	public IConnDef getDefinition() {
-		return this.definition;
+	/**
+	 * @return
+	 * @see org.crossroad.db.util.cfg.IConnDef#getDatabaseName()
+	 */
+	public String getDatabaseName() {
+		return definition.getDatabaseName();
 	}
+
+	/**
+	 * @param table
+	 * @return
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createInsertStatement(org.crossroad.db.util.db.ITable)
+	 */
+	public String createInsertStatement(ITable table) {
+		return sqlFactory.createInsertStatement(table);
+	}
+
+	/**
+	 * @param table
+	 * @return
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createTruncateStatement(org.crossroad.db.util.db.ITable)
+	 */
+	public String createTruncateStatement(ITable table) {
+		return sqlFactory.createTruncateStatement(table);
+	}
+
+	/**
+	 * @param table
+	 * @return
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createSelectStatement(org.crossroad.db.util.db.ITable)
+	 */
+	public String createSelectStatement(ITable table) {
+		return sqlFactory.createSelectStatement(table);
+	}
+
+
+	
 }

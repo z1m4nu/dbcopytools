@@ -74,11 +74,11 @@ public class DBSample extends AbstractLogger {
 
 				
 				log.info("Source insert ["+source.getSQLExportStatement()+"]");
-				log.info("Source select ["+source.getDatabase().getSqlFactory().createSelectStatement(source.getTable())+"]");
-				log.info("Source trunc  ["+source.getDatabase().getSqlFactory().createTruncateStatement(source.getTable())+"]");
+				log.info("Source select ["+source.getDatabase().createSelectStatement(source.getTable())+"]");
+				log.info("Source trunc  ["+source.getDatabase().createTruncateStatement(source.getTable())+"]");
 
 				log.info("Target insert ["+target.getSQLImportStatement()+"]");
-				log.info("Target select ["+target.getDatabase().getSqlFactory().createSelectStatement(target.getTable())+"]");
+				log.info("Target select ["+target.getDatabase().createSelectStatement(target.getTable())+"]");
 				log.info("Target trunc  ["+target.getSQLCleanStatement()+"]");
 
 			} else {

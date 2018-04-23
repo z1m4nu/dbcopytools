@@ -17,7 +17,6 @@ import org.crossroad.db.util.db.impl.AbstractDatabase;
  *
  */
 public class MemberDef implements IMemberImport, IMemberExport {
-	private String csvFile = null;
 	private String csvSeparator = null;
 	private AbstractDatabase database = null;
 	private int fetchsize = IMemberDef.DEFAULT_FETCHSIZE;
@@ -40,16 +39,12 @@ public class MemberDef implements IMemberImport, IMemberExport {
 
 	@Override
 	public String getCSVFile() {
-		return csvFile;
+		return this.database.getDatabaseName();
 	}
 
 	@Override
 	public String getCSVSeparator() {
 		return csvSeparator;
-	}
-
-	public void setCsvFile(String csvFile) {
-		this.csvFile = csvFile;
 	}
 
 	public void setCsvSeparator(String csvSeparator) {
@@ -117,7 +112,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		if (map.containsKey(CLEAN_STATEMENT)) {
 			statement = map.get(CLEAN_STATEMENT);
 		} else {
-			statement = database.getSqlFactory().createTruncateStatement(this.table);
+			statement = database.createTruncateStatement(this.table);
 		}
 		return statement;
 	}
@@ -129,7 +124,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		if (map.containsKey(EXPORT_STATEMENT)) {
 			statement = map.get(EXPORT_STATEMENT);
 		} else {
-			statement = database.getSqlFactory().createSelectStatement(this.table);
+			statement = database.createSelectStatement(this.table);
 		}
 		return statement;
 	}
@@ -141,7 +136,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		if (map.containsKey(IMPORT_STATEMENT)) {
 			statement = map.get(IMPORT_STATEMENT);
 		} else {
-			statement = database.getSqlFactory().createInsertStatement(this.table);
+			statement = database.createInsertStatement(this.table);
 		}
 		return statement;
 	}

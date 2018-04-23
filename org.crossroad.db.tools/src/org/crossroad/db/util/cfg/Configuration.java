@@ -112,7 +112,6 @@ public class Configuration extends AbstractConfiguration {
 		/*
 		 * CSV data
 		 */
-		member.setCsvFile(getProperties().getProperty(type + ".csv.filename", null));
 		member.setCsvSeparator(getProperties().getProperty(type + ".csv.separator", null));
 		member.setCsvOffset(getProperties().containsKey(type + ".csv.offset")?Integer.valueOf(getProperties().getProperty(type + ".csv.offset")):IMemberDef.DEFAULT_CSV_OFFSET);
 		member.useCSVHeader(getProperties().containsKey(type + ".csv.header")?Boolean.valueOf(getProperties().getProperty(type + ".csv.offset")):IMemberDef.DEFAULT_CSV_HEADER);
@@ -136,7 +135,7 @@ public class Configuration extends AbstractConfiguration {
 		 */
 		String tableCfg = getProperties().getProperty(type + ".sql.table", null);
 		log.info("Table name ["+tableCfg+"]");
-		if (tableCfg != null)
+		if (tableCfg != null && ! (DriversType.CSV.equals(def.getDriverId())))
 		{
 			
 			member.setTable(TableFactory.getInstance().create(database, tableCfg));
