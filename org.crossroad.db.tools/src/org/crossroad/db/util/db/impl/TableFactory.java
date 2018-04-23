@@ -37,7 +37,7 @@ public final class TableFactory extends AbstractSQLFactory {
 	 * @return
 	 * @throws Exception
 	 */
-	public Table create(Database db, String inTableName) throws Exception {
+	public Table create(AbstractDatabase db, String inTableName) throws Exception {
 		DatabaseMetaData meta = null;
 		ResultSet rs = null;
 		Table table = new Table();
@@ -47,7 +47,7 @@ public final class TableFactory extends AbstractSQLFactory {
 		try {
 			db.openConnection();
 			
-			meta = db.getConnection().getMetaData();
+			meta = ((Database)db).getConnection().getMetaData();
 			String schema = null;
 			String tableName = null;
 			String catalog = null;
@@ -82,15 +82,15 @@ public final class TableFactory extends AbstractSQLFactory {
 				/*
 				 * Add primary keys
 				 */
-				PrimaryKeyFactory.getInstance().create(db.getConnection(), table);
+				PrimaryKeyFactory.getInstance().create(((Database)db).getConnection(), table);
 				/*
 				 * Add columns
 				 */
-				ColumnFactory.getInstance().create(db.getConnection(), table);
+				ColumnFactory.getInstance().create(((Database)db).getConnection(), table);
 				/*
 				 * Build index
 				 */
-				IndexFactory.getInstance().create(db.getConnection(), table);
+				IndexFactory.getInstance().create(((Database)db).getConnection(), table);
 			}
 
 		} finally {

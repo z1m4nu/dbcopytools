@@ -10,6 +10,8 @@ import org.crossroad.db.util.cfg.impl.ConnDef;
 import org.crossroad.db.util.cfg.impl.DriversDef;
 import org.crossroad.db.util.cfg.impl.DrvDef;
 import org.crossroad.db.util.cfg.impl.MemberDef;
+import org.crossroad.db.util.db.DatabaseFactory;
+import org.crossroad.db.util.db.impl.AbstractDatabase;
 import org.crossroad.db.util.db.impl.Database;
 import org.crossroad.db.util.db.impl.TableFactory;
 import org.crossroad.util.cfg.AbstractConfiguration;
@@ -93,7 +95,7 @@ public class Configuration extends AbstractConfiguration {
 	public MemberDef getMember(String type) throws Exception
 	{
 		MemberDef member = null;
-		Database database = null;
+		AbstractDatabase database = null;
 
 		log.info("Load member configuration for type ["+type+"]");
 
@@ -101,7 +103,7 @@ public class Configuration extends AbstractConfiguration {
 		log.info("Connection type ["+def.getDriverId()+"]");
 		if (def != null)
 		{
-			database = new Database(def);
+			database = DatabaseFactory.create(type, def);
 		}
 		
 	
