@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
-import org.crossroad.db.util.cfg.IMemberExport;
-import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.config.IMemberExport;
+import org.crossroad.db.util.config.IMemberImport;
 import org.crossroad.db.util.db.impl.Database;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;

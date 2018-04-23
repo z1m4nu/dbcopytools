@@ -10,9 +10,9 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.util.Properties;
 
-import org.crossroad.db.util.cfg.IConnDef;
-import org.crossroad.db.util.cfg.IDrvDef;
-import org.crossroad.db.util.cfg.impl.DriversDef;
+import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.driver.DriversDef;
+import org.crossroad.db.util.driver.IDrvDef;
 
 /**
  * @author e.soden

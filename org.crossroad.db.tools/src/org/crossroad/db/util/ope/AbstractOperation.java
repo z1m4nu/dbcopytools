@@ -6,8 +6,8 @@ package org.crossroad.db.util.ope;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.crossroad.db.util.cfg.IMemberExport;
-import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.config.IMemberExport;
+import org.crossroad.db.util.config.IMemberImport;
 import org.crossroad.util.log.AbstractLogger;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;

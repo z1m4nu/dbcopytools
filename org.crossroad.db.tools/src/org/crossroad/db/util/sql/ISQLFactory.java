@@ -3,7 +3,7 @@
  */
 package org.crossroad.db.util.sql;
 
-import org.crossroad.db.util.db.ITable;
+import org.crossroad.db.util.table.ITable;
 
 /**
  * @author e.soden

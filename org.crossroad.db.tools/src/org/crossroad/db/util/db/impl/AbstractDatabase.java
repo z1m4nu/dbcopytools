@@ -3,11 +3,11 @@
  */
 package org.crossroad.db.util.db.impl;
 
-import org.crossroad.db.util.cfg.DriversType;
-import org.crossroad.db.util.cfg.IConnDef;
-import org.crossroad.db.util.db.ITable;
+import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.driver.DriversType;
 import org.crossroad.db.util.sql.ISQLFactory;
 import org.crossroad.db.util.sql.impl.SQLStatementFactory;
+import org.crossroad.db.util.table.ITable;
 import org.crossroad.util.log.AbstractLogger;
 
 /**
@@ -47,7 +47,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 
 	/**
 	 * @return
-	 * @see org.crossroad.db.util.cfg.IConnDef#getDriverId()
+	 * @see org.crossroad.db.util.connection.IConnDef#getDriverId()
 	 */
 	public DriversType getDriverId() {
 		return definition.getDriverId();
@@ -55,7 +55,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 
 	/**
 	 * @return
-	 * @see org.crossroad.db.util.cfg.IConnDef#getDatabaseName()
+	 * @see org.crossroad.db.util.connection.IConnDef#getDatabaseName()
 	 */
 	public String getDatabaseName() {
 		return definition.getDatabaseName();
@@ -64,7 +64,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 	/**
 	 * @param table
 	 * @return
-	 * @see org.crossroad.db.util.sql.ISQLFactory#createInsertStatement(org.crossroad.db.util.db.ITable)
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createInsertStatement(org.crossroad.db.util.table.ITable)
 	 */
 	public String createInsertStatement(ITable table) {
 		return sqlFactory.createInsertStatement(table);
@@ -73,7 +73,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 	/**
 	 * @param table
 	 * @return
-	 * @see org.crossroad.db.util.sql.ISQLFactory#createTruncateStatement(org.crossroad.db.util.db.ITable)
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createTruncateStatement(org.crossroad.db.util.table.ITable)
 	 */
 	public String createTruncateStatement(ITable table) {
 		return sqlFactory.createTruncateStatement(table);
@@ -82,7 +82,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 	/**
 	 * @param table
 	 * @return
-	 * @see org.crossroad.db.util.sql.ISQLFactory#createSelectStatement(org.crossroad.db.util.db.ITable)
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createSelectStatement(org.crossroad.db.util.table.ITable)
 	 */
 	public String createSelectStatement(ITable table) {
 		return sqlFactory.createSelectStatement(table);

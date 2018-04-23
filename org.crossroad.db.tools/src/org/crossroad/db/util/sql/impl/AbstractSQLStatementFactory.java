@@ -3,10 +3,10 @@
  */
 package org.crossroad.db.util.sql.impl;
 
-import org.crossroad.db.util.db.IColumn;
-import org.crossroad.db.util.db.ITable;
-import org.crossroad.db.util.db.impl.AbstractSQLFactory;
 import org.crossroad.db.util.sql.ISQLFactory;
+import org.crossroad.db.util.table.IColumn;
+import org.crossroad.db.util.table.ITable;
+import org.crossroad.db.util.table.impl.AbstractSQLFactory;
 
 /**
  * @author e.soden
@@ -56,7 +56,7 @@ public abstract class AbstractSQLStatementFactory extends AbstractSQLFactory imp
 	
 
 	/* (non-Javadoc)
-	 * @see org.crossroad.db.util.sql.ISQLFactory#createInsertStatement(org.crossroad.db.util.db.ITable)
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createInsertStatement(org.crossroad.db.util.table.ITable)
 	 */
 	@Override
 	public String createInsertStatement(ITable table) {
@@ -69,7 +69,7 @@ public abstract class AbstractSQLStatementFactory extends AbstractSQLFactory imp
 	}
 	/*
 	 * (non-Javadoc)
-	 * @see org.crossroad.db.util.sql.ISQLFactory#createSelectStatement(org.crossroad.db.util.db.ITable)
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createSelectStatement(org.crossroad.db.util.table.ITable)
 	 */
 	@Override
 	public String createSelectStatement(ITable table) {
@@ -82,7 +82,7 @@ public abstract class AbstractSQLStatementFactory extends AbstractSQLFactory imp
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.crossroad.db.util.sql.ISQLFactory#createTruncateStatement(org.crossroad.db.util.db.ITable)
+	 * @see org.crossroad.db.util.sql.ISQLFactory#createTruncateStatement(org.crossroad.db.util.table.ITable)
 	 */
 	@Override
 	public String createTruncateStatement(ITable table) {

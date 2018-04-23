@@ -3,9 +3,9 @@
  */
 package org.crossroad.db.util.sql.impl;
 
-import org.crossroad.db.util.cfg.DriversType;
-import org.crossroad.db.util.db.impl.AbstractSQLFactory;
+import org.crossroad.db.util.driver.DriversType;
 import org.crossroad.db.util.sql.ISQLFactory;
+import org.crossroad.db.util.table.impl.AbstractSQLFactory;
 
 /**
  * @author e.soden

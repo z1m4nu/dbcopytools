@@ -3,9 +3,9 @@
  */
 package org.crossroad.db.util.ope;
 
-import org.crossroad.db.util.cfg.DriversType;
-import org.crossroad.db.util.cfg.IMemberExport;
-import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.config.IMemberExport;
+import org.crossroad.db.util.config.IMemberImport;
+import org.crossroad.db.util.driver.DriversType;
 
 /**
  * @author e.soden

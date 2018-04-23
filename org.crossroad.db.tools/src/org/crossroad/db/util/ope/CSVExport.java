@@ -12,8 +12,8 @@ import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import org.crossroad.db.util.cfg.IMemberExport;
-import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.config.IMemberExport;
+import org.crossroad.db.util.config.IMemberImport;
 import org.crossroad.db.util.db.impl.Database;
 import org.crossroad.util.cfg.DirHelper;
 import org.crossroad.util.stat.RuntimeStat;
