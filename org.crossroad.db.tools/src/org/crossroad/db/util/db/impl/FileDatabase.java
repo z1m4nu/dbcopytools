@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.db.connection.IConnDef;
 
 /**
  * @author e.soden
@@ -29,7 +29,7 @@ public class FileDatabase extends AbstractDatabase {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.crossroad.db.util.table.impl.AbstractDatabase#doOpenConnection()
+	 * @see org.crossroad.db.util.db.table.impl.AbstractDatabase#doOpenConnection()
 	 */
 	@Override
 	protected void doOpenConnection() throws Exception {
@@ -43,7 +43,7 @@ public class FileDatabase extends AbstractDatabase {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.crossroad.db.util.table.impl.AbstractDatabase#doCloseConnection()
+	 * @see org.crossroad.db.util.db.table.impl.AbstractDatabase#doCloseConnection()
 	 */
 	@Override
 	protected void doCloseConnection() throws Exception {
@@ -60,7 +60,7 @@ public class FileDatabase extends AbstractDatabase {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.crossroad.db.util.table.impl.AbstractDatabase#commit()
+	 * @see org.crossroad.db.util.db.table.impl.AbstractDatabase#commit()
 	 */
 	@Override
 	public void commit() throws Exception {

@@ -7,15 +7,15 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 import org.crossroad.db.util.config.impl.MemberDef;
-import org.crossroad.db.util.connection.IConnDef;
-import org.crossroad.db.util.connection.impl.ConnDef;
 import org.crossroad.db.util.db.DatabaseFactory;
+import org.crossroad.db.util.db.connection.IConnDef;
+import org.crossroad.db.util.db.connection.impl.ConnDef;
 import org.crossroad.db.util.db.impl.AbstractDatabase;
 import org.crossroad.db.util.db.impl.Database;
+import org.crossroad.db.util.db.table.impl.TableFactory;
 import org.crossroad.db.util.driver.DriversDef;
 import org.crossroad.db.util.driver.DriversType;
 import org.crossroad.db.util.driver.impl.DrvDef;
-import org.crossroad.db.util.table.impl.TableFactory;
 import org.crossroad.util.cfg.AbstractConfiguration;
 import org.crossroad.util.cfg.DirHelper;
 

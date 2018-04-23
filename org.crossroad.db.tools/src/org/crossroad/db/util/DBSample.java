@@ -11,9 +11,9 @@ import org.apache.commons.cli.Options;
 import org.crossroad.db.util.config.Configuration;
 import org.crossroad.db.util.config.IMemberExport;
 import org.crossroad.db.util.config.IMemberImport;
+import org.crossroad.db.util.db.table.ITable;
+import org.crossroad.db.util.db.table.impl.TableFactory;
 import org.crossroad.db.util.sql.impl.SQLStatementFactory;
-import org.crossroad.db.util.table.ITable;
-import org.crossroad.db.util.table.impl.TableFactory;
 import org.crossroad.util.log.AbstractLogger;
 import org.crossroad.util.stat.RuntimeStatManager;
 

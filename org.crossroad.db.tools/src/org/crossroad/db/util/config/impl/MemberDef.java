@@ -10,7 +10,7 @@ import org.crossroad.db.util.config.IMemberDef;
 import org.crossroad.db.util.config.IMemberExport;
 import org.crossroad.db.util.config.IMemberImport;
 import org.crossroad.db.util.db.impl.AbstractDatabase;
-import org.crossroad.db.util.table.ITable;
+import org.crossroad.db.util.db.table.ITable;
 
 /**
  * @author e.soden

@@ -3,7 +3,7 @@
  */
 package org.crossroad.db.util.db;
 
-import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.db.connection.IConnDef;
 import org.crossroad.db.util.db.impl.AbstractDatabase;
 import org.crossroad.db.util.db.impl.Database;
 import org.crossroad.db.util.db.impl.FileDatabase;
