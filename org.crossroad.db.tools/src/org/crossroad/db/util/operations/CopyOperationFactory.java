@@ -5,7 +5,7 @@ package org.crossroad.db.util.operations;
 
 import org.crossroad.db.util.config.IMemberExport;
 import org.crossroad.db.util.config.IMemberImport;
-import org.crossroad.db.util.driver.DriversType;
+import org.crossroad.db.util.connection.driver.DriversType;
 
 /**
  * @author e.soden

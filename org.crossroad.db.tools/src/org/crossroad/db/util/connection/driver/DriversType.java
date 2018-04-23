@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.crossroad.db.util.driver;
+package org.crossroad.db.util.connection.driver;
 
 /**
  * @author e.soden

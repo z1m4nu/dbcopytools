@@ -1,6 +1,6 @@
 package org.crossroad.db.util.db.table;
 
-import org.crossroad.db.util.db.connection.IConnDef;
+import org.crossroad.db.util.connection.IConnDef;
 import org.crossroad.db.util.sql.ISQLFactory;
 
 public interface IDatabase {

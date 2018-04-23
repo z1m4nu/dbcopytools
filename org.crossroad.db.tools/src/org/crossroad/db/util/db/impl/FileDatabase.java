@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import org.crossroad.db.util.db.connection.IConnDef;
+import org.crossroad.db.util.connection.IConnDef;
 
 /**
  * @author e.soden

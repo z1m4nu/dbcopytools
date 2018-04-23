@@ -3,9 +3,9 @@
  */
 package org.crossroad.db.util.db.impl;
 
-import org.crossroad.db.util.db.connection.IConnDef;
+import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.connection.driver.DriversType;
 import org.crossroad.db.util.db.table.ITable;
-import org.crossroad.db.util.driver.DriversType;
 import org.crossroad.db.util.sql.ISQLFactory;
 import org.crossroad.db.util.sql.impl.SQLStatementFactory;
 import org.crossroad.util.log.AbstractLogger;
@@ -47,7 +47,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 
 	/**
 	 * @return
-	 * @see org.crossroad.db.util.db.connection.IConnDef#getDriverId()
+	 * @see org.crossroad.db.util.connection.IConnDef#getDriverId()
 	 */
 	public DriversType getDriverId() {
 		return definition.getDriverId();
@@ -55,7 +55,7 @@ public abstract class AbstractDatabase extends AbstractLogger {
 
 	/**
 	 * @return
-	 * @see org.crossroad.db.util.db.connection.IConnDef#getDatabaseName()
+	 * @see org.crossroad.db.util.connection.IConnDef#getDatabaseName()
 	 */
 	public String getDatabaseName() {
 		return definition.getDatabaseName();

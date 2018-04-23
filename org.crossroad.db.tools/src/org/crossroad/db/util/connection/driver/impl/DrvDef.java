@@ -1,7 +1,7 @@
-package org.crossroad.db.util.driver.impl;
+package org.crossroad.db.util.connection.driver.impl;
 
-import org.crossroad.db.util.driver.DriversType;
-import org.crossroad.db.util.driver.IDrvDef;
+import org.crossroad.db.util.connection.driver.DriversType;
+import org.crossroad.db.util.connection.driver.IDrvDef;
 import org.crossroad.util.log.AbstractLogger;
 
 public class DrvDef extends AbstractLogger implements IDrvDef {

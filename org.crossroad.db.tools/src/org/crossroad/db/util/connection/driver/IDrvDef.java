@@ -1,4 +1,4 @@
-package org.crossroad.db.util.driver;
+package org.crossroad.db.util.connection.driver;
 
 public interface IDrvDef {
 	

@@ -1,7 +1,7 @@
-package org.crossroad.db.util.db.connection.impl;
+package org.crossroad.db.util.connection.impl;
 
-import org.crossroad.db.util.db.connection.IConnDef;
-import org.crossroad.db.util.driver.DriversType;
+import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.connection.driver.DriversType;
 
 public class ConnDef implements IConnDef {
     private DriversType driverId = null;

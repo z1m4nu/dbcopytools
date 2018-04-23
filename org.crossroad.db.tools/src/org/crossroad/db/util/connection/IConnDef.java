@@ -1,6 +1,6 @@
-package org.crossroad.db.util.db.connection;
+package org.crossroad.db.util.connection;
 
-import org.crossroad.db.util.driver.DriversType;
+import org.crossroad.db.util.connection.driver.DriversType;
 
 public interface IConnDef {
 

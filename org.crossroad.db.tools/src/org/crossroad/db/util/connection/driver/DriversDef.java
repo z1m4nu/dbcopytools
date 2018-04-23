@@ -1,13 +1,13 @@
 /**
  * 
  */
-package org.crossroad.db.util.driver;
+package org.crossroad.db.util.connection.driver;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.crossroad.db.util.db.connection.IConnDef;
-import org.crossroad.db.util.driver.impl.DrvDef;
+import org.crossroad.db.util.connection.IConnDef;
+import org.crossroad.db.util.connection.driver.impl.DrvDef;
 
 /**
  * @author e.soden

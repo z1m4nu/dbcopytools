@@ -3,8 +3,8 @@
  */
 package org.crossroad.db.util.sql.impl;
 
+import org.crossroad.db.util.connection.driver.DriversType;
 import org.crossroad.db.util.db.table.impl.AbstractSQLFactory;
-import org.crossroad.db.util.driver.DriversType;
 import org.crossroad.db.util.sql.ISQLFactory;
 
 /**
