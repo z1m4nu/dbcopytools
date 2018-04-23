@@ -26,6 +26,10 @@ public class Configuration extends AbstractConfiguration {
 	 */
 	public Configuration(String homeDir) {
 		super(homeDir);
+		
+		
+		
+		
 	}
 
 	/* (non-Javadoc)
@@ -94,6 +98,7 @@ public class Configuration extends AbstractConfiguration {
 		log.info("Load member configuration for type ["+type+"]");
 
 		IConnDef def = getConnectionId(type);
+		log.info("Connection type ["+def.getDriverId()+"]");
 		if (def != null)
 		{
 			database = new Database(def);

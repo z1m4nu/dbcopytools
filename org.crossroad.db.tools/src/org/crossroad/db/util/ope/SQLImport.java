@@ -9,7 +9,7 @@ import java.sql.ResultSetMetaData;
 
 import org.crossroad.db.util.cfg.IMemberExport;
 import org.crossroad.db.util.cfg.IMemberImport;
-import org.crossroad.db.util.db.impl.AbstractSQLDatabase;
+import org.crossroad.db.util.db.impl.Database;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;
 
@@ -40,7 +40,9 @@ public class SQLImport extends AbstractOperation {
 		ResultSetMetaData meta = null;
 		long totalCount = 0L;
 		try {
-			if (source.getDatabase().openConnection() && destination.getDatabase().openConnection()) {
+			source.getDatabase().openConnection();
+			destination.getDatabase().openConnection();
+			
 				String sqlSource = source.getSQLExportStatement();
 				String sqlTarget = destination.getSQLImportStatement();
 				log.info("SQL Source [" + sqlSource + "]");
@@ -48,13 +50,13 @@ public class SQLImport extends AbstractOperation {
 
 				RuntimeStat stat = new RuntimeStat();
 				stat.markStart();
-				srcPstmt = ((AbstractSQLDatabase)source.getDatabase()).getConnection().prepareStatement(sqlSource);
+				srcPstmt = ((Database)source.getDatabase()).getConnection().prepareStatement(sqlSource);
 				rs = srcPstmt.executeQuery();
 				meta = rs.getMetaData();
 				stat.markEnd();
 				RuntimeStatManager.getInstance().addSubStep("SQL_REMOTE", stat);
 
-				dstPstmt = ((AbstractSQLDatabase)destination.getDatabase()).getConnection().prepareStatement(sqlTarget);
+				dstPstmt = ((Database)destination.getDatabase()).getConnection().prepareStatement(sqlTarget);
 
 				stat = new RuntimeStat();
 				stat.markStart();
@@ -90,7 +92,7 @@ public class SQLImport extends AbstractOperation {
 					stat.markEnd();
 					RuntimeStatManager.getInstance().addSubStep("DB_IMPORT", stat);
 				}
-			}
+			
 		} finally {
 			if (rs != null) {
 				rs.close();

@@ -4,7 +4,6 @@
 package org.crossroad.db.util.db.impl;
 
 import org.crossroad.db.util.cfg.IConnDef;
-import org.crossroad.db.util.db.IDatabase;
 import org.crossroad.db.util.sql.ISQLFactory;
 import org.crossroad.db.util.sql.impl.SQLStatementFactory;
 import org.crossroad.util.log.AbstractLogger;
@@ -13,35 +12,41 @@ import org.crossroad.util.log.AbstractLogger;
  * @author e.soden
  *
  */
-public abstract class AbstractDatabase extends AbstractLogger implements IDatabase {
-
-	
-	private IConnDef connDef = null;
+public abstract class AbstractDatabase extends AbstractLogger {
+	protected IConnDef definition = null;
 	private ISQLFactory sqlFactory = null;
 
 	/**
 	 * 
 	 */
-	public AbstractDatabase(IConnDef connDef) {
-		this.connDef = connDef;
-
-		sqlFactory = SQLStatementFactory.getInstance().create(connDef.getDriverId());
+	public AbstractDatabase(IConnDef definition) {
+		this.definition = definition;
+		sqlFactory = SQLStatementFactory.getInstance().create(definition.getDriverId());
 	}
-	
-	public boolean openConnection() {
-		return doOpenConnection(connDef);
+
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	public void openConnection() throws Exception {
+		doOpenConnection();
 	}
-	
-	protected abstract boolean doOpenConnection(IConnDef connDef);
 
+	protected abstract void doOpenConnection() throws Exception;
 
-	@Override
-	public ISQLFactory getSQLFactory() {
+	public void closeConnection() throws Exception {
+		doCloseConnection();
+	}
+
+	protected abstract void doCloseConnection() throws Exception;
+
+	public abstract void commit() throws Exception;
+
+	public ISQLFactory getSqlFactory() {
 		return sqlFactory;
 	}
-	
-	@Override
-	public IConnDef getConfiguration() {
-		return this.connDef;
+
+	public IConnDef getDefinition() {
+		return this.definition;
 	}
 }

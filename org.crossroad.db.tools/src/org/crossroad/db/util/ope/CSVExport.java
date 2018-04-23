@@ -12,10 +12,9 @@ import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import org.crossroad.db.util.cfg.IMemberDef;
 import org.crossroad.db.util.cfg.IMemberExport;
 import org.crossroad.db.util.cfg.IMemberImport;
-import org.crossroad.db.util.db.impl.AbstractSQLDatabase;
+import org.crossroad.db.util.db.impl.Database;
 import org.crossroad.util.cfg.DirHelper;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;
@@ -51,66 +50,64 @@ public class CSVExport extends AbstractOperation {
 		StringBuffer headers = new StringBuffer();
 		StringBuffer lineBuffer = new StringBuffer();
 		try {
-			if (source.getDatabase().openConnection()) {
+			source.getDatabase().openConnection();
 
-				RuntimeStat stat = new RuntimeStat();
-				stat.markStart();
+			RuntimeStat stat = new RuntimeStat();
+			stat.markStart();
 
-				String sqlSource = source.getSQLExportStatement();
-				log.info("SQL Source [" + sqlSource + "]");
-				
-				
-				srcPstmt = ((AbstractSQLDatabase)source.getDatabase()).getConnection().prepareStatement(sqlSource);
-				rs = srcPstmt.executeQuery();
-				meta = rs.getMetaData();
-				stat.markEnd();
-				RuntimeStatManager.getInstance().addSubStep("SQL_REMOTE", stat);
+			String sqlSource = source.getSQLExportStatement();
+			log.info("SQL Source [" + sqlSource + "]");
 
-				int columns = meta.getColumnCount();
+			srcPstmt = ((Database) source.getDatabase()).getConnection().prepareStatement(sqlSource);
+			rs = srcPstmt.executeQuery();
+			meta = rs.getMetaData();
+			stat.markEnd();
+			RuntimeStatManager.getInstance().addSubStep("SQL_REMOTE", stat);
 
-				if (destination.hasCSVHeader()) {
-					for (int i = 0; i < columns; i++) {
-						headers.append(meta.getColumnName(i + 1));
-						if (i < (columns - 1))
-							headers.append(destination.getCSVSeparator());
-					}
-					headers.append(SEPARATOR);
+			int columns = meta.getColumnCount();
+
+			if (destination.hasCSVHeader()) {
+				for (int i = 0; i < columns; i++) {
+					headers.append(meta.getColumnName(i + 1));
+					if (i < (columns - 1))
+						headers.append(destination.getCSVSeparator());
 				}
+				headers.append(SEPARATOR);
+			}
 
-				lineBuffer = new StringBuffer();
+			lineBuffer = new StringBuffer();
 
-				stat = new RuntimeStat();
-				stat.markStart();
-				while (rs.next()) {
-					totalCount++;
-					for (int i = 0; i < columns; i++) {
-						lineBuffer.append(rs.getString(i + 1));
-						if (i < (columns - 1))
-							lineBuffer.append(destination.getCSVSeparator());
+			stat = new RuntimeStat();
+			stat.markStart();
+			while (rs.next()) {
+				totalCount++;
+				for (int i = 0; i < columns; i++) {
+					lineBuffer.append(rs.getString(i + 1));
+					if (i < (columns - 1))
+						lineBuffer.append(destination.getCSVSeparator());
 
-					}
-					lineBuffer.append(SEPARATOR);
-
-					if ((totalCount % destination.getCommitBlock()) == 0) {
-						writeToFile(destination.getCSVFile(), headers.toString(), lineBuffer.toString());
-						
-						fireCommitListener(destination.getCommitBlock());
-						
-						stat.markEnd();
-						RuntimeStatManager.getInstance().addSubStep("CSV_EXPORT", stat);
-						stat = new RuntimeStat();
-						stat.markStart();
-
-						lineBuffer = new StringBuffer();
-					}
 				}
+				lineBuffer.append(SEPARATOR);
 
-				if ((totalCount % destination.getCommitBlock()) != 0) {
+				if ((totalCount % destination.getCommitBlock()) == 0) {
 					writeToFile(destination.getCSVFile(), headers.toString(), lineBuffer.toString());
+
 					fireCommitListener(destination.getCommitBlock());
+
 					stat.markEnd();
 					RuntimeStatManager.getInstance().addSubStep("CSV_EXPORT", stat);
+					stat = new RuntimeStat();
+					stat.markStart();
+
+					lineBuffer = new StringBuffer();
 				}
+			}
+
+			if ((totalCount % destination.getCommitBlock()) != 0) {
+				writeToFile(destination.getCSVFile(), headers.toString(), lineBuffer.toString());
+				fireCommitListener(destination.getCommitBlock());
+				stat.markEnd();
+				RuntimeStatManager.getInstance().addSubStep("CSV_EXPORT", stat);
 			}
 
 		} finally {
@@ -141,11 +138,9 @@ public class CSVExport extends AbstractOperation {
 		NumberFormat formatter = new DecimalFormat("00");
 		RuntimeStat stat = new RuntimeStat();
 		stat.markStart();
-		
+
 		try {
 
-			
-			
 			String fname = null;
 
 			if (outCount > 0) {
@@ -170,7 +165,7 @@ public class CSVExport extends AbstractOperation {
 				writer.flush();
 				writer.close();
 			}
-			
+
 			stat.markEnd();
 			RuntimeStatManager.getInstance().addSubStep("WRTIE_FILE", stat);
 		}

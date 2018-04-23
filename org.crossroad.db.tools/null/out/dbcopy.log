@@ -1,0 +1,30 @@
+ERROR main org.crossroad.db.util.cfg.Configuration - java.lang.Exception: Unmatched Type
+INFO main org.crossroad.db.util.cfg.Configuration - Load member configuration for type [source]
+INFO main org.crossroad.db.util.cfg.Configuration - Connection type [MSS]
+INFO main org.crossroad.db.util.cfg.Configuration - Table name [DW.tblLagerBestandExSAP]
+INFO main org.crossroad.db.util.DBCopy - 
+
+Overall execution: 
+	- Memory usage: 0.6500MB
+	- Time spent: 00 d 00:00:00.071
+
+INFO main org.crossroad.db.util.cfg.Configuration - Load member configuration for type [source]
+INFO main org.crossroad.db.util.cfg.Configuration - Connection type [MSS]
+INFO main org.crossroad.db.util.cfg.Configuration - Table name [DW.tblLagerBestandExSAP]
+INFO main org.crossroad.db.util.db.impl.Database - Connection ID [source]
+INFO main org.crossroad.db.util.db.impl.Database - drvDef ID [MSS]
+INFO main org.crossroad.db.util.db.impl.Database - JDBC Jar [D:\sources\000_GIT\dbcopytools\org.crossroad.db.tools\release\lib\sqljdbc4.jar]
+INFO main org.crossroad.db.util.db.impl.Database - JDBC Class [com.microsoft.sqlserver.jdbc.SQLServerDriver]
+INFO main org.crossroad.db.util.db.impl.Database - JDBC url [jdbc:sqlserver://BASWBISQL:60955;databaseName=TW_DW]
+INFO main org.crossroad.db.util.db.impl.Database - Set schema to [null]
+INFO main org.crossroad.db.util.db.impl.Database - Connect to the remote database
+INFO main org.crossroad.db.util.db.impl.Database - Connected [Microsoft SQL Server]
+INFO main org.crossroad.db.util.cfg.Configuration - Load member configuration for type [target]
+INFO main org.crossroad.db.util.cfg.Configuration - Connection type [CSV]
+INFO main org.crossroad.db.util.cfg.Configuration - Table name [SODEE.ZTW_MPT::StockDataDailySQL]
+INFO main org.crossroad.db.util.DBCopy - 
+
+Overall execution: 
+	- Memory usage: 22.9852MB
+	- Time spent: 00 d 00:00:01.1200
+

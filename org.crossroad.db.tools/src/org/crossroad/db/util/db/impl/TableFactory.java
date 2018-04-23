@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 
 import org.crossroad.db.util.db.IColumn;
 import org.crossroad.db.util.db.IColumnIndex;
-import org.crossroad.db.util.db.IDatabase;
 import org.crossroad.db.util.db.IIndex;
 import org.crossroad.db.util.db.IPrimaryKey;
 import org.crossroad.db.util.db.ITable;
@@ -38,69 +37,69 @@ public final class TableFactory extends AbstractSQLFactory {
 	 * @return
 	 * @throws Exception
 	 */
-	public Table create(AbstractSQLDatabase db, String inTableName) throws Exception {
+	public Table create(Database db, String inTableName) throws Exception {
 		DatabaseMetaData meta = null;
 		ResultSet rs = null;
 		Table table = new Table();
 
-		if (db.openConnection()) {
+		
 
-			try {
-				
-				meta = db.getConnection().getMetaData();
-				String schema = null;
-				String tableName = null;
-				String catalog = null;
-				String[] s = inTableName.split("\\.");
+		try {
+			db.openConnection();
+			
+			meta = db.getConnection().getMetaData();
+			String schema = null;
+			String tableName = null;
+			String catalog = null;
+			String[] s = inTableName.split("\\.");
 
-				switch (s.length) {
-				case 3:
-					catalog = s[0];
-					schema = s[1];
-					tableName = s[2];
-					break;
-				case 2:
-					catalog = null;
-					schema = s[0];
-					tableName = s[1];
-					break;
-				default:
-					catalog = null;
-					schema = null;
-					tableName = s[0];
-					break;
-				}
+			switch (s.length) {
+			case 3:
+				catalog = s[0];
+				schema = s[1];
+				tableName = s[2];
+				break;
+			case 2:
+				catalog = null;
+				schema = s[0];
+				tableName = s[1];
+				break;
+			default:
+				catalog = null;
+				schema = null;
+				tableName = s[0];
+				break;
+			}
 
-				rs = meta.getTables(catalog, schema, tableName, new String[] { "TABLE" });
+			rs = meta.getTables(catalog, schema, tableName, new String[] { "TABLE" });
 
-				while (rs.next()) {
-					log.debug(dumpSQL(rs));
-					table.setCatalog(rs.getString("TABLE_CAT"));
-					table.setName(rs.getString("TABLE_NAME"));
-					table.setSchema(rs.getString("TABLE_SCHEM"));
+			while (rs.next()) {
+				log.debug(dumpSQL(rs));
+				table.setCatalog(rs.getString("TABLE_CAT"));
+				table.setName(rs.getString("TABLE_NAME"));
+				table.setSchema(rs.getString("TABLE_SCHEM"));
 
-					/*
-					 * Add primary keys
-					 */
-					PrimaryKeyFactory.getInstance().create(db.getConnection(), table);
-					/*
-					 * Add columns
-					 */
-					ColumnFactory.getInstance().create(db.getConnection(), table);
-					/*
-					 * Build index
-					 */
-					IndexFactory.getInstance().create(db.getConnection(), table);
-				}
+				/*
+				 * Add primary keys
+				 */
+				PrimaryKeyFactory.getInstance().create(db.getConnection(), table);
+				/*
+				 * Add columns
+				 */
+				ColumnFactory.getInstance().create(db.getConnection(), table);
+				/*
+				 * Build index
+				 */
+				IndexFactory.getInstance().create(db.getConnection(), table);
+			}
 
-			} finally {
-				if (meta != null) {
-					meta = null;
-				}
+		} finally {
+			if (meta != null) {
+				meta = null;
+			}
 
-				if (rs != null) {
-					rs.close();
-				}
+			if (rs != null) {
+				rs.close();
 			}
 		}
 

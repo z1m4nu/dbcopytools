@@ -1,7 +1,7 @@
 package org.crossroad.db.util.cfg;
 
-import org.crossroad.db.util.db.IDatabase;
 import org.crossroad.db.util.db.ITable;
+import org.crossroad.db.util.db.impl.AbstractDatabase;
 
 public interface IMemberDef {
 	public final static String ACTION_CSV = "CSV";
@@ -21,7 +21,7 @@ public interface IMemberDef {
 	/*
 	 * SQL
 	 */
-	IDatabase getDatabase();
+	AbstractDatabase getDatabase();
 	int getCommitBlock();
 	int getFetchsize();
 	ITable getTable();

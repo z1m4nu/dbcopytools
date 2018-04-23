@@ -3,6 +3,8 @@
  */
 package org.crossroad.db.util;
 
+import java.io.File;
+
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -16,6 +18,7 @@ import org.crossroad.db.util.ope.CSVExport;
 import org.crossroad.db.util.ope.CSVImport;
 import org.crossroad.db.util.ope.CopyOperationFactory;
 import org.crossroad.db.util.ope.SQLImport;
+import org.crossroad.util.cfg.DirHelper;
 import org.crossroad.util.log.AbstractLogger;
 import org.crossroad.util.stat.RuntimeStatManager;
 
@@ -37,6 +40,7 @@ public class DBCopy extends AbstractLogger {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
+		System.setProperty("logfilename", DirHelper.getInstance().getOutPath("dbcopy.log"));
 		DBCopy dbUtil = new DBCopy();
 		dbUtil.parseCommand(args);
 	}

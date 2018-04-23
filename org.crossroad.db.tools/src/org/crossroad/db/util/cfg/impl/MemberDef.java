@@ -9,8 +9,8 @@ import java.util.Map;
 import org.crossroad.db.util.cfg.IMemberDef;
 import org.crossroad.db.util.cfg.IMemberExport;
 import org.crossroad.db.util.cfg.IMemberImport;
-import org.crossroad.db.util.db.IDatabase;
 import org.crossroad.db.util.db.ITable;
+import org.crossroad.db.util.db.impl.AbstractDatabase;
 
 /**
  * @author e.soden
@@ -19,7 +19,7 @@ import org.crossroad.db.util.db.ITable;
 public class MemberDef implements IMemberImport, IMemberExport {
 	private String csvFile = null;
 	private String csvSeparator = null;
-	private IDatabase database = null;
+	private AbstractDatabase database = null;
 	private int fetchsize = IMemberDef.DEFAULT_FETCHSIZE;
 	private int commitBlock = IMemberDef.DEFAULT_COMMIT_BLOCK;
 	private int csvOffset = IMemberDef.DEFAULT_CSV_OFFSET;
@@ -33,7 +33,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 
 	private Map<String, String> map = new HashMap<String, String>();
 
-	public MemberDef(IDatabase database) {
+	public MemberDef(AbstractDatabase database) {
 		this.database = database;
 	}
 
@@ -69,7 +69,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 	}
 
 	@Override
-	public IDatabase getDatabase() {
+	public AbstractDatabase getDatabase() {
 		return database;
 	}
 
@@ -117,7 +117,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		if (map.containsKey(CLEAN_STATEMENT)) {
 			statement = map.get(CLEAN_STATEMENT);
 		} else {
-			statement = database.getSQLFactory().createTruncateStatement(this.table);
+			statement = database.getSqlFactory().createTruncateStatement(this.table);
 		}
 		return statement;
 	}
@@ -129,7 +129,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		if (map.containsKey(EXPORT_STATEMENT)) {
 			statement = map.get(EXPORT_STATEMENT);
 		} else {
-			statement = database.getSQLFactory().createSelectStatement(this.table);
+			statement = database.getSqlFactory().createSelectStatement(this.table);
 		}
 		return statement;
 	}
@@ -141,7 +141,7 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		if (map.containsKey(IMPORT_STATEMENT)) {
 			statement = map.get(IMPORT_STATEMENT);
 		} else {
-			statement = database.getSQLFactory().createInsertStatement(this.table);
+			statement = database.getSqlFactory().createInsertStatement(this.table);
 		}
 		return statement;
 	}

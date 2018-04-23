@@ -13,14 +13,11 @@ public interface IDatabase {
 
 	boolean closeConnection();
 
-	//Connection getConnection();
-	
 	ISQLFactory getSQLFactory();
 	
 	IConnDef getConfiguration();
 	
 	void commit() throws Exception;
 	
-
 
 }

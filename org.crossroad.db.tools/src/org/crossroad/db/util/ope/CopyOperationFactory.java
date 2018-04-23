@@ -22,7 +22,7 @@ public final class CopyOperationFactory {
 	public static AbstractOperation create(IMemberExport src, IMemberImport dst) {
 		AbstractOperation operation = null;
 
-		if (DriversType.CSV.equals(src.getDatabase().getConfiguration().getDriverId())) {
+		if (DriversType.CSV.equals(src.getDatabase().getDefinition().getDriverId())) {
 			operation = new CSVImport(src, dst);
 		} else if (DriversType.CSV.equals(dst)) {
 			operation = new CSVExport(src, dst);
