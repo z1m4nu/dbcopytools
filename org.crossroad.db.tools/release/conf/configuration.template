@@ -1,0 +1,103 @@
+# Configuration template
+# The configuration is divided in two parts
+# source.*: Configuration for the source acccess
+# target.*: Configuration for the target access
+# Database driver and access
+#############################
+# Database driver
+# mss: Microsoft SQL Server
+# hdb: SAP HANA database
+# orc: Oracle database
+# db2: IBM DB2
+# dby: Derby database
+#############################
+source.database.driver=
+#############################
+# Database connection
+#############################
+# Database name
+source.database.dbname=
+# hostname
+source.database.hostname=
+# Listen port
+source.database.port=
+#############################
+# Database credentials
+#############################
+source.database.username=
+source.database.password=
+#############################
+# CSV File configuration
+#############################
+# Complete path
+source.csv.filename=D:\\systems\\BW\\stockData\\Stock_2018.csv
+# CSV separator char
+source.csv.separator=,
+# Line offset reading
+source.csv.offset=0
+#############################
+# SQL configuration
+#############################
+# Source table
+source.sql.table=
+# SQL statement used to export data
+# This statement will super seed the default SQL statement
+source.sql.statement.export=
+# Fetch size for SELECT statement
+source.sql.fetchsize=
+
+#############################
+# Database driver
+# mss: Microsoft SQL Server
+# hdb: SAP HANA database
+# orc: Oracle database
+# db2: IBM DB2
+# dby: Derby database
+# csv: CSV Driver
+#############################
+target.database.driver=csv
+#############################
+# Database connection
+#############################
+# Database name
+target.database.dbname=
+# hostname
+target.database.hostname=
+# Listen port
+target.database.port=
+#############################
+# Database credentials
+#############################
+target.database.username=
+target.database.password=
+#############################
+# CSV File configuration
+#############################
+# Complete path
+target.csv.filename=
+# CSV separator char
+target.csv.separator=,
+# Line offset reading
+target.csv.offset=0
+# Generate CSV header
+# true: Generate headers
+# false: do not generate headers
+target.csv.header=true
+#############################
+# SQL configuration
+#############################
+# Source table
+target.sql.table=
+# SQL statement used to import data
+# This statement will super seed the default SQL statement
+target.sql.statement.import=
+# Specify wether or not import table should be cleaned before
+# true: Clean table before insert
+target.sql.statement.import.clean=
+# This statement will super seed the default SQL statement
+target.sql.statement.clean=
+# Generic commit block
+# Specify the number of rows before commiting data either in database
+# or writing into CSV file
+target.commitblock=
+
