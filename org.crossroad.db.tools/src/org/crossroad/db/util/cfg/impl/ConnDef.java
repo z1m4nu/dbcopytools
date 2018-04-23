@@ -1,9 +1,10 @@
 package org.crossroad.db.util.cfg.impl;
 
+import org.crossroad.db.util.cfg.DriversType;
 import org.crossroad.db.util.cfg.IConnDef;
 
 public class ConnDef implements IConnDef {
-    private String driverId = null;
+    private DriversType driverId = null;
 	private String databaseName = null;
 	private String schemaName = null;
 	private String serverName = null;
@@ -96,11 +97,11 @@ public class ConnDef implements IConnDef {
 	}
 
 	@Override
-	public String getDriverId() {
+	public DriversType getDriverId() {
 		return this.driverId;
 	}
 	
-	public void setDriverId(String id)
+	public void setDriverId(DriversType id)
 	{
 		this.driverId = id;
 	}

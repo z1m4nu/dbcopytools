@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 
 import org.crossroad.db.util.cfg.IMemberExport;
 import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.db.impl.AbstractSQLDatabase;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;
 
@@ -38,7 +39,7 @@ public class CSVImport extends AbstractOperation {
 		long totalCount = 0L;
 		try {
 			if (destination.getDatabase().openConnection()) {
-				dstPstmt = destination.getDatabase().getConnection().prepareStatement(destination.getSQLImportStatement());
+				dstPstmt = ((AbstractSQLDatabase)destination.getDatabase()).getConnection().prepareStatement(destination.getSQLImportStatement());
 
 				reader = new BufferedReader(new FileReader(source.getCSVFile()));
 				String line = null;
@@ -58,7 +59,7 @@ public class CSVImport extends AbstractOperation {
 						if ((totalCount % destination.getCommitBlock()) == 0) {
 							System.out.println("Execute batch");
 							int ret[] = dstPstmt.executeBatch();
-							destination.getDatabase().getConnection().commit();
+							destination.getDatabase().commit();
 							
 							fireCommitListener(ret.length);
 							
@@ -74,7 +75,7 @@ public class CSVImport extends AbstractOperation {
 
 				if ((totalCount % destination.getCommitBlock()) != 0) {
 					int ret[] = dstPstmt.executeBatch();
-					destination.getDatabase().getConnection().commit();
+					destination.getDatabase().commit();
 					fireCommitListener(ret.length);
 					
 					dstPstmt.clearBatch();

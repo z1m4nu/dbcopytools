@@ -9,7 +9,7 @@ import org.crossroad.db.util.cfg.IConnDef;
  * @author e.soden
  *
  */
-public class Database extends AbstractDatabase {
+public class Database extends AbstractSQLDatabase {
 
 	/**
 	 * 

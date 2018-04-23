@@ -15,6 +15,7 @@ import java.text.NumberFormat;
 import org.crossroad.db.util.cfg.IMemberDef;
 import org.crossroad.db.util.cfg.IMemberExport;
 import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.db.impl.AbstractSQLDatabase;
 import org.crossroad.util.cfg.DirHelper;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;
@@ -59,7 +60,7 @@ public class CSVExport extends AbstractOperation {
 				log.info("SQL Source [" + sqlSource + "]");
 				
 				
-				srcPstmt = source.getDatabase().getConnection().prepareStatement(sqlSource);
+				srcPstmt = ((AbstractSQLDatabase)source.getDatabase()).getConnection().prepareStatement(sqlSource);
 				rs = srcPstmt.executeQuery();
 				meta = rs.getMetaData();
 				stat.markEnd();

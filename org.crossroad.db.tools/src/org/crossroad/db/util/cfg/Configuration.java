@@ -46,9 +46,9 @@ public class Configuration extends AbstractConfiguration {
 
 		for (Object key : drv.keySet()) {
 			String drvId = key.toString().split("\\.")[0];
-
-			if (!DriversDef.getInstance().containsDriver(drvId)) {
-				DrvDef driver = new DrvDef(drvId);
+			DriversType dType = DriversType.fromString(drvId);
+			if (!DriversDef.getInstance().containsDriver(dType)) {
+				DrvDef driver = new DrvDef(dType);
 				driver.setClassName(drv.getProperty(drvId + ".driver.class"));
 				driver.setDriverJar(DirHelper.getInstance().getLibPath(drv.getProperty(drvId + ".driver.jar")));
 				driver.setJdbcUrl(drv.getProperty(drvId + ".driver.url"));
@@ -67,7 +67,7 @@ public class Configuration extends AbstractConfiguration {
 	 * @param id
 	 * @return
 	 */
-	public IConnDef getConnectionId(String id)
+	public IConnDef getConnectionId(String id) throws Exception
 	{
 		ConnDef connDef = null;
 		if (getDBValue(id, "driver") != null)
@@ -75,7 +75,7 @@ public class Configuration extends AbstractConfiguration {
 			connDef = new ConnDef(id);
 			
 			connDef.setDatabaseName(getDBValue(id, "dbname"));
-			connDef.setDriverId(getDBValue(id, "driver"));
+			connDef.setDriverId(DriversType.fromString(getDBValue(id, "driver")));
 			connDef.setServerName(getDBValue(id, "hostname"));
 			connDef.setPassword(getDBValue(id, "password"));
 			connDef.setSchemaName(getDBValue(id, "schema"));
@@ -101,7 +101,7 @@ public class Configuration extends AbstractConfiguration {
 		
 	
 		member = new MemberDef(database);
-		member.setAction(getProperties().getProperty(type + ".action", null));
+		
 		/*
 		 * CSV data
 		 */
