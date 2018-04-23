@@ -1,7 +1,6 @@
 package org.crossroad.db.util.db;
 
-import java.sql.Connection;
-
+import org.crossroad.db.util.cfg.IConnDef;
 import org.crossroad.db.util.sql.ISQLFactory;
 
 public interface IDatabase {
@@ -14,9 +13,13 @@ public interface IDatabase {
 
 	boolean closeConnection();
 
-	Connection getConnection();
+	//Connection getConnection();
 	
 	ISQLFactory getSQLFactory();
+	
+	IConnDef getConfiguration();
+	
+	void commit() throws Exception;
 	
 
 

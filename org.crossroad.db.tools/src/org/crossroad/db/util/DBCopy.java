@@ -14,6 +14,7 @@ import org.crossroad.db.util.cfg.IMemberImport;
 import org.crossroad.db.util.ope.AbstractOperation;
 import org.crossroad.db.util.ope.CSVExport;
 import org.crossroad.db.util.ope.CSVImport;
+import org.crossroad.db.util.ope.CopyOperationFactory;
 import org.crossroad.db.util.ope.SQLImport;
 import org.crossroad.util.log.AbstractLogger;
 import org.crossroad.util.stat.RuntimeStatManager;
@@ -69,25 +70,11 @@ public class DBCopy extends AbstractLogger {
 				IMemberExport source = configuration.getMember("source");
 				IMemberImport target = configuration.getMember("target");
 
-				AbstractOperation operation = null;
+				RuntimeStatManager.getInstance().addCustomInfo("Commit block", String.valueOf(target.getCommitBlock()));
+				RuntimeStatManager.getInstance().addCustomInfo("Fetch size", String.valueOf(source.getFetchsize()));
 
-				if (source.isActionSQL() && target.isActionSQL()) {
-					operation = new SQLImport(source, target);
-				} else if (!source.isActionSQL() && target.isActionSQL()) {
-					operation = new CSVImport(source, target);
-				} else if (source.isActionSQL() && !target.isActionSQL()) {
-					operation = new CSVExport(source, target);
-				}
-				
-				if (operation != null)
-				{
-					RuntimeStatManager.getInstance().addCustomInfo("Commit block", String.valueOf(target.getCommitBlock()));
-					RuntimeStatManager.getInstance().addCustomInfo("Fetch size", String.valueOf(source.getFetchsize()));
-
-					
-					long rows = operation.operate();
-					RuntimeStatManager.getInstance().addCustomInfo("Rows retrieved", String.valueOf(rows));
-				}
+				long rows = CopyOperationFactory.create(source, target).operate();
+				RuntimeStatManager.getInstance().addCustomInfo("Rows retrieved", String.valueOf(rows));
 
 			} else {
 				throw new RuntimeException("Home directory flags is mandatory");

@@ -38,7 +38,7 @@ public final class TableFactory extends AbstractSQLFactory {
 	 * @return
 	 * @throws Exception
 	 */
-	public Table create(IDatabase db, String inTableName) throws Exception {
+	public Table create(AbstractSQLDatabase db, String inTableName) throws Exception {
 		DatabaseMetaData meta = null;
 		ResultSet rs = null;
 		Table table = new Table();
@@ -46,6 +46,7 @@ public final class TableFactory extends AbstractSQLFactory {
 		if (db.openConnection()) {
 
 			try {
+				
 				meta = db.getConnection().getMetaData();
 				String schema = null;
 				String tableName = null;

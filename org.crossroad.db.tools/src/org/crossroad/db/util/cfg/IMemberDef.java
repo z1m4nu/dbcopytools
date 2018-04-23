@@ -11,8 +11,6 @@ public interface IMemberDef {
 	public final static int DEFAULT_CSV_OFFSET = 0;
 	public final static boolean DEFAULT_CSV_HEADER = true;
 	
-	String getAction();
-	
 	/*
 	 * CSV
 	 */
@@ -24,7 +22,6 @@ public interface IMemberDef {
 	 * SQL
 	 */
 	IDatabase getDatabase();
-	boolean isActionSQL();
 	int getCommitBlock();
 	int getFetchsize();
 	ITable getTable();

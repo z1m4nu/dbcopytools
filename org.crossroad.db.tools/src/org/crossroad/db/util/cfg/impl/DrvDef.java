@@ -1,17 +1,18 @@
 package org.crossroad.db.util.cfg.impl;
 
+import org.crossroad.db.util.cfg.DriversType;
 import org.crossroad.db.util.cfg.IDrvDef;
 import org.crossroad.util.log.AbstractLogger;
 
 public class DrvDef extends AbstractLogger implements IDrvDef {
-	private String id = null;
+	private DriversType id = null;
 	private String className = null;
 	private String driverJar = null;
 	private String jdbcUrl = null;
 	
 	
 
-	public DrvDef(String id) {
+	public DrvDef(DriversType id) {
 		this.id = id;
 	}
 	
@@ -62,7 +63,7 @@ public class DrvDef extends AbstractLogger implements IDrvDef {
 	}
 
 	@Override
-	public String getID() {
+	public DriversType getID() {
 		return this.id;
 	}
 

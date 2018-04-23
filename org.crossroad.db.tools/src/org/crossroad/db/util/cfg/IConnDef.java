@@ -5,7 +5,7 @@ public interface IConnDef {
 	/**
 	 * @return the driverName
 	 */
-	String getDriverId();
+	DriversType getDriverId();
 
 	/**
 	 * @return the databaseName

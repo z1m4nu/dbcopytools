@@ -17,7 +17,6 @@ import org.crossroad.db.util.db.ITable;
  *
  */
 public class MemberDef implements IMemberImport, IMemberExport {
-	private String action = null;
 	private String csvFile = null;
 	private String csvSeparator = null;
 	private IDatabase database = null;
@@ -38,10 +37,6 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		this.database = database;
 	}
 
-	@Override
-	public String getAction() {
-		return action;
-	}
 
 	@Override
 	public String getCSVFile() {
@@ -51,10 +46,6 @@ public class MemberDef implements IMemberImport, IMemberExport {
 	@Override
 	public String getCSVSeparator() {
 		return csvSeparator;
-	}
-
-	public void setAction(String action) {
-		this.action = action;
 	}
 
 	public void setCsvFile(String csvFile) {
@@ -82,10 +73,6 @@ public class MemberDef implements IMemberImport, IMemberExport {
 		return database;
 	}
 
-	@Override
-	public boolean isActionSQL() {
-		return IMemberDef.ACTION_SQL.equalsIgnoreCase(action);
-	}
 
 	@Override
 	public int getCommitBlock() {

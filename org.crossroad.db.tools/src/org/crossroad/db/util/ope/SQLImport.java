@@ -9,6 +9,7 @@ import java.sql.ResultSetMetaData;
 
 import org.crossroad.db.util.cfg.IMemberExport;
 import org.crossroad.db.util.cfg.IMemberImport;
+import org.crossroad.db.util.db.impl.AbstractSQLDatabase;
 import org.crossroad.util.stat.RuntimeStat;
 import org.crossroad.util.stat.RuntimeStatManager;
 
@@ -47,13 +48,13 @@ public class SQLImport extends AbstractOperation {
 
 				RuntimeStat stat = new RuntimeStat();
 				stat.markStart();
-				srcPstmt = source.getDatabase().getConnection().prepareStatement(sqlSource);
+				srcPstmt = ((AbstractSQLDatabase)source.getDatabase()).getConnection().prepareStatement(sqlSource);
 				rs = srcPstmt.executeQuery();
 				meta = rs.getMetaData();
 				stat.markEnd();
 				RuntimeStatManager.getInstance().addSubStep("SQL_REMOTE", stat);
 
-				dstPstmt = destination.getDatabase().getConnection().prepareStatement(sqlTarget);
+				dstPstmt = ((AbstractSQLDatabase)destination.getDatabase()).getConnection().prepareStatement(sqlTarget);
 
 				stat = new RuntimeStat();
 				stat.markStart();
@@ -67,7 +68,7 @@ public class SQLImport extends AbstractOperation {
 
 					if ((totalCount % destination.getCommitBlock()) == 0) {						
 						int ret[] = dstPstmt.executeBatch();
-						destination.getDatabase().getConnection().commit();
+						destination.getDatabase().commit();
 						
 						fireCommitListener(ret.length);
 						
@@ -82,7 +83,7 @@ public class SQLImport extends AbstractOperation {
 
 				if ((totalCount % destination.getCommitBlock()) != 0) {
 					int ret[] = dstPstmt.executeBatch();
-					destination.getDatabase().getConnection().commit();
+					destination.getDatabase().commit();
 					fireCommitListener(ret.length);
 
 					dstPstmt.clearBatch();

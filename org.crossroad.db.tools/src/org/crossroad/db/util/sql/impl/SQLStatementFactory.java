@@ -3,6 +3,7 @@
  */
 package org.crossroad.db.util.sql.impl;
 
+import org.crossroad.db.util.cfg.DriversType;
 import org.crossroad.db.util.db.impl.AbstractSQLFactory;
 import org.crossroad.db.util.sql.ISQLFactory;
 
@@ -24,14 +25,14 @@ public class SQLStatementFactory extends AbstractSQLFactory {
 		return instance;
 	}
 	
-	public ISQLFactory create(String dbId)
+	public ISQLFactory create(DriversType dbId)
 	{
 		ISQLFactory factory  = null;
 		
-		if("mssql".equalsIgnoreCase(dbId))
+		if(DriversType.MSS.equals(dbId))
 		{
 			factory = new MSSSQLFactory();
-		} else if ("hana".equalsIgnoreCase(dbId))
+		} else if (DriversType.HDB.equals(dbId))
 		{
 			factory = new HANASQLFactory();
 		} else {
