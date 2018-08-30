@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="db2-158f740c468-14f3e2a18975a120" provider="db2" driver="db2" name="DB2 - New Connection" create-date="1481617100043" login-date="1481617106116" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="10.192.1.33" port="50001" server="" database="TWPROD" url="jdbc:db2://10.192.1.33:50001/TWPROD" user="db2ro" password="JygSMUdBXUdl8w==" type="dev">
+			<property name="@dbeaver-trace.append" value="false"/>
+			<property name="@dbeaver-trace.folder" value=""/>
+			<property name="@dbeaver-trace.file" value="trace"/>
+			<property name="@dbeaver-trace.level" value="0"/>
+			<property name="@dbeaver-trace.enabled" value="false"/>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="port" value="22"/>
+				<property name="keyPath" value=""/>
+				<property name="host" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<bootstrap/>
+		</connection>
+	</data-source>
+	<data-source id="sap_hana-158f7ca0edc-885c822d13b3055" provider="generic" driver="sap_hana" name="SAP - baslhanasb02.tally-weijl.ch" create-date="1481626067870" login-date="1481626071006" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="baslhanasb02.tally-weijl.ch" port="30015" server="" database="" url="jdbc:sap://baslhanasb02.tally-weijl.ch:30015" user="zmonitor" password="JzMDKUtPFkZURGbf" type="dev">
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="port" value="22"/>
+				<property name="keyPath" value=""/>
+				<property name="host" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<bootstrap/>
+		</connection>
+	</data-source>
+	<data-source id="sap_hana-158f7d07b63-6639afc130eb2fe1" provider="generic" driver="sap_hana" name="SAP - baslhanasb02.tally-weijl.ch" create-date="1481626432534" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="baslhanasb02.tally-weijl.ch" port="30015" server="" database="" url="jdbc:sap://baslhanasb02.tally-weijl.ch:30015" user="ZMONITOR" password="JzMDKUtPFkZURGbf" type="dev">
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="port" value="22"/>
+				<property name="keyPath" value=""/>
+				<property name="host" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<bootstrap defaultObject="SAPD02"/>
+		</connection>
+	</data-source>
+</data-sources>
